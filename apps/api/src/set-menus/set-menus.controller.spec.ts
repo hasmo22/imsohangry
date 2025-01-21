@@ -38,7 +38,11 @@ describe('SetMenusController', () => {
 
       const result = await controller.getSetMenus(cuisineSlug, page, limit);
 
-      expect(service.getFilteredSetMenus).toHaveBeenCalledWith(cuisineSlug, page, limit);
+      expect(service.getFilteredSetMenus).toHaveBeenCalledWith(
+        cuisineSlug,
+        page,
+        limit,
+      );
       expect(result).toBe(mockResult);
     });
 
@@ -47,9 +51,17 @@ describe('SetMenusController', () => {
 
       jest.spyOn(service, 'getFilteredSetMenus').mockResolvedValue(mockResult);
 
-      const result = await controller.getSetMenus(undefined, undefined, undefined);
+      const result = await controller.getSetMenus(
+        undefined,
+        undefined,
+        undefined,
+      );
 
-      expect(service.getFilteredSetMenus).toHaveBeenCalledWith(undefined, 1, 10);
+      expect(service.getFilteredSetMenus).toHaveBeenCalledWith(
+        undefined,
+        1,
+        10,
+      );
       expect(result).toBe(mockResult);
     });
   });

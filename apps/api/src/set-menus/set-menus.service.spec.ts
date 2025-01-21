@@ -23,7 +23,9 @@ describe('SetMenusService', () => {
     };
 
     mockRepository = {
-      createQueryBuilder: jest.fn(() => mockQueryBuilder as SelectQueryBuilder<SetMenu>),
+      createQueryBuilder: jest.fn(
+        () => mockQueryBuilder as SelectQueryBuilder<SetMenu>,
+      ),
     };
 
     mockDataSource = {
@@ -33,8 +35,12 @@ describe('SetMenusService', () => {
         rollbackTransaction: jest.fn(),
         release: jest.fn(),
         manager: {
-          create: jest.fn().mockImplementation((entity, data) => ({ ...data, id: 1 })),
-          save: jest.fn().mockImplementation((entity) => Promise.resolve(entity)),
+          create: jest
+            .fn()
+            .mockImplementation((entity, data) => ({ ...data, id: 1 })),
+          save: jest
+            .fn()
+            .mockImplementation((entity) => Promise.resolve(entity)),
         },
       }),
     };
@@ -73,7 +79,9 @@ describe('SetMenusService', () => {
 
     const mockCount = 5;
 
-    const queryBuilder = mockRepository.createQueryBuilder!() as jest.Mocked<SelectQueryBuilder<SetMenu>>;
+    const queryBuilder = mockRepository.createQueryBuilder!() as jest.Mocked<
+      SelectQueryBuilder<SetMenu>
+    >;
     queryBuilder.getRawMany.mockResolvedValueOnce(mockMenus);
     queryBuilder.getRawMany.mockResolvedValueOnce(mockCuisinesAggregate);
     queryBuilder.getCount.mockResolvedValueOnce(mockCount);
@@ -109,7 +117,10 @@ describe('SetMenusService', () => {
     await service.fetchAndIngestData();
 
     expect(mockQueryRunner.startTransaction).toHaveBeenCalled();
-    expect(mockQueryRunner.manager.create).toHaveBeenCalledWith(expect.anything(), expect.anything());
+    expect(mockQueryRunner.manager.create).toHaveBeenCalledWith(
+      expect.anything(),
+      expect.anything(),
+    );
     expect(mockQueryRunner.manager.save).toHaveBeenCalled();
     expect(mockQueryRunner.commitTransaction).toHaveBeenCalled();
   });

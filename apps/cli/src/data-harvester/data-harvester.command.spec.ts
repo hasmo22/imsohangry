@@ -28,7 +28,9 @@ describe('DataHarvester Command', () => {
 
   it('should call fetchAndIngestData successfully', async () => {
     // Mock fetchAndIngestData to resolve
-    (mockSetMenusService.fetchAndIngestData as jest.Mock).mockResolvedValueOnce(undefined);
+    (mockSetMenusService.fetchAndIngestData as jest.Mock).mockResolvedValueOnce(
+      undefined,
+    );
 
     await expect(command.run()).resolves.toBeUndefined();
 
@@ -38,7 +40,9 @@ describe('DataHarvester Command', () => {
   it('should handle errors from fetchAndIngestData', async () => {
     // Mock fetchAndIngestData to throw an error
     const mockError = new Error('Test error');
-    (mockSetMenusService.fetchAndIngestData as jest.Mock).mockRejectedValueOnce(mockError);
+    (mockSetMenusService.fetchAndIngestData as jest.Mock).mockRejectedValueOnce(
+      mockError,
+    );
 
     await expect(command.run()).rejects.toThrow('Test error');
 

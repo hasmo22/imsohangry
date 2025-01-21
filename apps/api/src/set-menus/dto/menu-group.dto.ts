@@ -1,4 +1,4 @@
-import { IsNumber, IsOptional, IsObject, IsString } from 'class-validator';
+import { IsNumber, IsOptional, IsObject } from 'class-validator';
 
 export class MenuGroupDto {
   @IsNumber()
