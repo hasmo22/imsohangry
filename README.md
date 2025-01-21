@@ -14,6 +14,7 @@ Please follow the instructions specified below to setup the project. This includ
 
 ```bash
 $ yarn install
+$ yarn build
 $ docker-compose up -d
 $ yarn start:cli
 $ yarn start
